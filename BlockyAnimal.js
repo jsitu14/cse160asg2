@@ -134,7 +134,6 @@ document.getElementById('vertSlide').addEventListener('mousemove', function() {c
     ev.stopPropagation(); 
     let x = ev.clientX;
     let y = ev.clientY;
-    // Check if the cursor is inside the canvas bounds
     let rect = ev.target.getBoundingClientRect();
     if (rect.left <= x && x < rect.right && rect.top <= y && y < rect.bottom) {
       lastX = x;
@@ -142,7 +141,6 @@ document.getElementById('vertSlide').addEventListener('mousemove', function() {c
       dragging = true;
 
       if (ev.shiftKey) {
-          //console.log("shift key")
           resetRotation();
           g_pokeAnimation = true;
           g_pokeTime = 0; // Reset animation time
@@ -209,24 +207,15 @@ function updatePokeAnimation() {
         console.log("poke", g_pokeTime)
         g_pokeTime += 1
         g_legsAnimation = 1
-        g_pokeTime++; // Increment the tick counter
+        g_pokeTime++;
 
-      // Switch colors every 10 ticks
-      if (g_pokeTime % 20 < 10) {
-          g_color_1 = [0.761, 0.424, 0.035, 1.0];
-
-      } else {
-          g_color_1 = [0.851, 0.475, 0.043, 1.0];
-      }
-      // Switch colors every 10 ticks
       if (g_pokeTime % 60 < 10) {
           g_nose_size = 1
       } else {
           g_nose_size = 2
       }
 
-      
-        if (g_pokeTime > 1000) { // Animation lasts 1 second
+        if (g_pokeTime > 1000) {
             console.log("poke stop")
           g_legsAnimation = 0
           g_pokeAnimation = false;
